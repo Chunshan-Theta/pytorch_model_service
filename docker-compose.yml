@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+    redis:
+        build:
+            context: ./redis_server/
+            dockerfile: Dockerfile
+        image: nlu_redis_dummy
+        container_name: nluredisdummy
+        restart: always
+        expose:
+            - 6379
+        ports:
+          - "6379:6379"
+    model_worker_senti:
+        build:
+            context: ./model_worker/
+            dockerfile: Dockerfile
+        image: workers_server_container_senti_image
+        container_name: workers_server_container_senti
+        restart: always
+        environment:
+            - task_name=senti
+        depends_on:
+            - redis
+
+    master_server:
+        build:
+            context: ./master_server/
+            dockerfile: Dockerfile
+        image: django_service_server_image
+        container_name: django_service_server_container
+        restart: always
+        depends_on:
+            - redis
+        expose:
+            - 8000
+        ports:
+            - "8000:8000"
+

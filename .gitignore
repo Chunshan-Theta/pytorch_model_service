@@ -1,0 +1,3 @@
+venv
+.idea
+model_worker/util/roberta-base-finetuned-jd-binary-chinese/

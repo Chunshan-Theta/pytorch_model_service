@@ -1,0 +1,7 @@
+protobuf==3.17.0
+aredis==1.1.5
+redis==3.2.1
+torch==1.8.1
+sentence-transformers==1.1.0
+jieba
+transformers==4.2.2
